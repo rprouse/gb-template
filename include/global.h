@@ -14,7 +14,7 @@
 #define SET_BANK(N)     SWITCH_ROM(N); old_bank = bank; bank = N
 #define RESTORE_BANK()  SWITCH_ROM(old_bank); bank = old_bank
 
-#define GS_NONE                -1
+#define GS_NONE                99
 #define GS_LOGO                 0
 #define GS_END                  1
 

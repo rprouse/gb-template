@@ -19,6 +19,6 @@ void logoScreenUpdate() {
     UPDATE_KEYS();
 
     if (KEY_TICKED(J_START)) {
-         //game_state = GS_END;
+         game_state = GS_END;
     }
 }
