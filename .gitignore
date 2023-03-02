@@ -5,5 +5,3 @@
 *.noi
 *.cdb
 /obj
-/unused
-/.vscode
