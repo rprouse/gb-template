@@ -9,13 +9,14 @@
 #define KEY_DEBOUNCE(K) ((input & (K)) && (old_input & (K)))
 #define KEY_TICKED(K)   ((input & (K)) && !(old_input & (K)))
 #define KEY_RELEASED(K) ((old_input & (K)) && !(input & (K)))
+#define ANY_KEY_PRESSED (input)
 
 #define SET_BANK(N)     SWITCH_ROM(N); old_bank = bank; bank = N
 #define RESTORE_BANK()  SWITCH_ROM(old_bank); bank = old_bank
 
-#define GS_TITLE                0
-#define GS_LEVEL                1
-#define GS_END                  2
+#define GS_NONE                -1
+#define GS_LOGO                 0
+#define GS_END                  1
 
 #define FALSE                   0
 #define TRUE                    1

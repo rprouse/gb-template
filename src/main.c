@@ -1,27 +1,34 @@
 #include <gb/gb.h>
 #include <stdint.h>
 #include "global.h"
-#include "logo.h"
+#include "logoState.h"
 
-void init_gfx() {
-    // Load Background tiles and then map
-    set_bkg_palette( 0, 1, Logo_palettes);
-    set_bkg_data(0, Logo_TILE_COUNT, Logo_tiles);
-    set_bkg_tiles(0, 0, 20u, 18u, Logo_map);
+typedef void (*FunctionPointer)();
 
-    // Turn the background map on to make it visible
-    SHOW_BKG;
+const FunctionPointer gameInitStates[] = {
+  logoScreenInit
+};
 
-    DISPLAY_ON;
-}
+const FunctionPointer gameUpdateStates[] = {
+  logoScreenUpdate
+};
 
 void main(void)
 {
-	init_gfx();
+    // Initialize the game state
+    uint8_t last_game_state = GS_NONE;
+    game_state = GS_LOGO;
 
     // Loop forever
     while(1) {
-        // Game main loop processing goes here
+        // Run the initialization function for the current game state
+        if (game_state != last_game_state) {
+            gameInitStates[game_state]();
+            last_game_state = game_state;
+        }
+
+        // Run the update function for the current game state
+        gameUpdateStates[game_state]();
 
         // Done processing, yield CPU and wait for start of next frame
         wait_vbl_done();
