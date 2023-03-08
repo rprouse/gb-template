@@ -16,7 +16,8 @@
 
 #define GS_NONE                99
 #define GS_LOGO                 0
-#define GS_END                  1
+#define GS_GAME                 1
+#define GS_END                  2
 
 #define FALSE                   0
 #define TRUE                    1

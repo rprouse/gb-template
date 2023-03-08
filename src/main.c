@@ -2,17 +2,20 @@
 #include <stdint.h>
 #include "global.h"
 #include "logoState.h"
+#include "gameState.h"
 #include "endState.h"
 
 typedef void (*FunctionPointer)();
 
 const FunctionPointer gameInitStates[] = {
     logoScreenInit,
+    gameScreenInit,
     endScreenInit
 };
 
 const FunctionPointer gameUpdateStates[] = {
     logoScreenUpdate,
+    gameScreenUpdate,
     endScreenUpdate
 };
 

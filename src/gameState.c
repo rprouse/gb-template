@@ -1,13 +1,14 @@
 #include <gb/gb.h>
 #include <stdint.h>
 #include "global.h"
-#include "logo.h"
+#include "tiles.h"
+#include "map.h"
 
-void logoScreenInit() {
+void gameScreenInit() {
     // Load Background tiles and then map
-    set_bkg_palette( 0, 1, Logo_palettes);
-    set_bkg_data(0, Logo_TILE_COUNT, Logo_tiles);
-    set_bkg_tiles(0, 0, 20u, 18u, Logo_map);
+    //set_bkg_palette( 0, 1, Logo_palettes);
+    set_bkg_data(0, TileLen, Tile);
+    set_bkg_tiles(0, 0, MapWidth, MapHeight, Map);
 
     // Turn the background map on to make it visible
     SHOW_BKG;
@@ -15,10 +16,10 @@ void logoScreenInit() {
     DISPLAY_ON;
 }
 
-void logoScreenUpdate() {
+void gameScreenUpdate() {
     UPDATE_KEYS();
 
     if (KEY_TICKED(J_START)) {
-         game_state = GS_GAME;
+         game_state = GS_END;
     }
 }
