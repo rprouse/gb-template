@@ -30,7 +30,7 @@ PROJECTNAME = gb-template
 SRCDIR      = src
 OBJDIR      = obj
 RESDIR      = res
-BINS	      = $(OBJDIR)/$(PROJECTNAME).gbc
+BINS	      = $(OBJDIR)/$(PROJECTNAME).gb
 CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.c)))
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
 OBJS        = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
@@ -56,7 +56,7 @@ $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 
 # Link the compiled object files into a .gb ROM file
 $(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -Wm-yC -o $(BINS) $(OBJS)
+	$(LCC) $(LCCFLAGS) -o $(BINS) $(OBJS)
 
 run:	$(BINS)
 	$(GBEMU) --rom $(BINS)
